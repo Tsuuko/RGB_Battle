@@ -1,0 +1,104 @@
+{% block head %}
+<!-- Required meta tags -->
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<title>RGBバトル</title>
+<!-- Bootstrap -->
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet">
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/fontawesome-all.min.css" rel="stylesheet">
+
+<link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='css/style.css') }}">
+{% endblock head %}
+
+
+{% block content %}
+<nav class="navbar navbar-expand navbar-dark bg-dark static-top">
+    <a class="navbar-brand mr-1" href="/">RGB Battle</a>
+</nav>
+
+
+<div class="container">
+    <div class="mx-auto col-lg-8">
+        <a href="/">
+            <img src="/static/img/toplogo.png" alt="top_logo" class="top_logo mx-auto d-block" href="/" />
+        </a>
+    </div>
+    <div class="mx-auto" style="max-width:400px;">
+        <div>
+            <form action="/upload" method="post" enctype="multipart/form-data">
+                <div class="form-group">
+                    <label for="name">ニックネーム （最大10文字）</label><br>
+                    <div class="row m-1">
+                        <input type="text" class="form-control" name="name" id="name" value="名無し" maxlength="10" />
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="name">画像ファイル （5MBまで）</label><br>
+                    <input type="file" name="data" class="btn btn-Default" id="data">
+                </div>
+                {% if msg %}
+                <div class="alert alert-danger" role="alert">
+                    {{msg}}
+                </div>
+                {% endif %}
+                <div class="form-group text-center">
+
+                    {# モーダルウィンドウを呼び出すボタン #}
+                    <input type="button" value="対戦相手選択" class="btn btn-success mx-1 p-3" data-toggle="modal" data-target="#player_select_modal">
+                    <input type="submit" class="btn btn-primary mx-1 p-3 pull-right" value="送信" id="submit">
+                </div>
+
+                {# バトルポイントランキング　ボタン #}
+                <div class="text-center">
+                    <button type="button" class="btn btn-info py-2" onclick="location.href='/ranking'">バトルポイントランキング</button>
+                </div>
+
+                {# モーダルウィンドウ #}
+                <div class="modal fade" id="player_select_modal">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h4 class="modal-title">対戦相手選択</h4>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                                        aria-hidden="true">&times;</span></button>
+                            </div>
+                            <div class="modal-body">
+
+                                <div class="btn-group-vertical" data-toggle="buttons">
+                                    {# データベースのユーザー一覧表示 #}
+                                    {% for record in loaddata %}
+                                    <label class="btn btn-outline-primary {% if loop.index0 == 0 %}active{% endif %}" data-dismiss="modal">
+                                        <input type="radio" name="opponent" autocomplete="off" value="{{record.id}}"
+                                            hidden {% if loop.index0==0 %}checked{% endif %}>
+                                        <img src="/static/img/opponent_{{record.color}}.png" alt="{{record.color}}"
+                                            class="opponent_icon float-left" />
+                                        <div class="opponent_text">
+                                            <p>ユーザー名：{{record.username}}<br>
+                                                バトルポイント：<b>{{record.battle_point}}</b></p>
+                                        </div>
+                                    </label>
+                                    {% endfor %}
+                                    {# /データベースのユーザー一覧表示 #}
+                                    {#<div class="modal-footer">
+                                        <button type="button" class="btn btn-primary" data-dismiss="modal">閉じる</button>
+                                    </div>#}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                {# /モーダルウィンドウ #}
+            </form>
+        </div>
+    </div>
+</div>
+
+
+
+{# jquery,bootstrap #}
+<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js"></script>
+{# /jquery,bootstrap #}
+
+{% endblock content %}

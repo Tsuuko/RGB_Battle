@@ -1,0 +1,73 @@
+{#
+
+{% block content %}
+<table border="1" width="300" cellspacing="0" cellpadding="5">
+  <tr>
+    <th>ユーザー</th>
+    <th>color</th>
+    <th>BP</th>
+  </tr>
+  {% for item in entries %}
+  <tr>
+    <td>{{item.username | safe}}</td>
+    <td>{{item.color | safe}}</td>
+    <td>{{item.battle_point | safe}}</td>
+  </tr>
+  {% endfor %}
+</table>
+
+
+
+{% endblock %}
+#}
+
+
+{% block head %}
+<!-- Required meta tags -->
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<title>RGBバトル</title>
+<!-- Bootstrap -->
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet">
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/fontawesome-all.min.css" rel="stylesheet">
+<link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='css/ranking.css') }}">
+<link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='css/style.css') }}">
+{% endblock head %}
+
+{% block content %}
+<nav class="navbar navbar-expand navbar-dark bg-dark static-top">
+  <a class="navbar-brand mr-1" href="/">RGB Battle</a>
+</nav>
+<div class="container mt-3">
+
+<div class="mx-auto" style="max-width:400px;">
+  <table class="table">
+    <tr>
+        <th scope="col">#</th>
+        <th scope="col">ユーザー</th>
+        <th scope="col">color</th>
+      <th scope="col">BP</th>
+    </tr>
+    {% for item in entries %}
+    <tr>
+      <th  scope="row">{{loop.index0+1}}</th>
+      <td class="username">{{item.username | safe}}</td>
+      <td>{{item.color | safe}}</td>
+      <td>{{item.battle_point | safe}}</td>
+    </tr>
+    {% endfor %}
+  </table>
+</div>
+<div  class="mx-auto" style="max-width:200px;">
+    <button type="button" class="btn btn-primary py-2 px-5" onclick="location.href='/'">トップページ</button>
+</div>
+
+</div>
+
+
+{# jquery,bootstrap #}
+<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js"></script>
+{# /jquery,bootstrap #}
+
+{% endblock content %}
