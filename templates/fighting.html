@@ -1,0 +1,52 @@
+{% from "result_macro.html" import resultImage with context %}
+{% block head %}
+<!-- Required meta tags -->
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<title>RGBバトル</title>
+<!-- Bootstrap -->
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet">
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/fontawesome-all.min.css" rel="stylesheet">
+
+<link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='css/style.css') }}">
+{% endblock head %}
+
+{% block content %}
+<nav class="navbar navbar-expand navbar-dark bg-dark static-top">
+    <a class="navbar-brand mr-1" href="/">RGB Battle</a>
+</nav>
+
+
+<div class="container mt-3">
+        <div class="mx-auto" style="max-width:400px;">
+        <img src="/static/img/fighting.gif" class="img-responsive center-block"><br>
+
+</div>
+
+</div>
+
+
+
+<form name="post" action="result" method="post">
+        <input type="hidden" name="color" value="{{resultdata.color}}">
+        <input type="hidden" name="BP" value="{{resultdata.BP}}">
+        <input type="hidden" name="name" value="{{resultdata.name}}">
+        <input type="hidden" name="battle_result" value="{{resultdata.battle_result}}">
+    </form>
+
+    {# 画面遷移スクリプト #}
+    <script type="text/javascript">
+        setTimeout(function () {
+            var f = document.forms["post"];
+            f.method = "POST";
+            f.submit();
+            return true;
+        }, 5 * 1000);
+    </script>
+
+{# jquery,bootstrap #}
+<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js"></script>
+{# /jquery,bootstrap #}
+
+{% endblock content %}

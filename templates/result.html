@@ -1,0 +1,46 @@
+{% from "result_macro.html" import resultImage with context %}
+{% block head %}
+<!-- Required meta tags -->
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<title>RGBバトル</title>
+<!-- Bootstrap -->
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet">
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/fontawesome-all.min.css" rel="stylesheet">
+
+<link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='css/style.css') }}">
+{% endblock head %}
+
+{% block content %}
+<nav class="navbar navbar-expand navbar-dark bg-dark static-top">
+    <a class="navbar-brand mr-1" href="/">RGB Battle</a>
+</nav>
+
+
+<div class="container mt-3">
+    <div class="mx-auto" style="max-width:400px;">
+        <div>
+            <h3>{{resultdata.name}} さんの結果</h3>
+        </div>
+        {{resultImage(resultdata.color,resultdata.battle_result)}}
+        <div class="alert alert-secondary" role="alert">
+            <div class="mx-auto" style="max-width:250px;">
+                <div class="mx-1">RGBカラー：{{resultdata.color}}</div>
+                <div class="mx-1">基礎バトルポイント：{{resultdata.BP}}</div>
+            </div>
+        </div>
+        <div  class="mx-auto" style="max-width:200px;">
+                <button type="button" class="btn btn-primary py-2 px-5" onclick="location.href='/'">トップページ</button>
+            </div>
+
+    </div>
+</div>
+
+
+
+{# jquery,bootstrap #}
+<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js"></script>
+{# /jquery,bootstrap #}
+
+{% endblock content %}

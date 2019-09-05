@@ -1,0 +1,11 @@
+img.opponent_icon{
+    width: 25%;
+}
+.top_logo{
+    width: 80%;
+}
+
+.opponent_text{
+	height: 65px;
+	display: flex;
+	align-items: center;}

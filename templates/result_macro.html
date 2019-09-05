@@ -1,0 +1,9 @@
+{% macro resultImage(color,battle_result) %}
+{% if battle_result=="win" or battle_result=="draw" %}
+<img src="/static/img/battle_result/victory_{{color}}.jpg" class="img-responsive center-block">
+{% elif battle_result=="lose" %}
+<img src="/static/img/battle_result/lose_{{color}}.jpg" class="img-responsive center-block">
+{% else %}
+<img src="/static/img/battle_result/draw_{{color}}.jpg" class="img-responsive center-block">
+{%endif%}
+{% endmacro %}
