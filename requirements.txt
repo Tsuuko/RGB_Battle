@@ -10,3 +10,4 @@ Hamlish_Jinja==0.3.3
 Pillow==5.4.1
 flask_bootstrap==3.3.7.1
 psycopg2
+gunicorn
