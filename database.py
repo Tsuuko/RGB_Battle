@@ -6,6 +6,7 @@ from sqlalchemy.ext.declarative import declarative_base
 from flask import * #Flask,make_response,render_template,request, jsonify,g,redirect,url_for
 from flask_sqlalchemy import SQLAlchemy
 from random import choice,randint
+import os
 
 app = Flask(__name__)
 db_uri = os.environ['DATABASE_URL'] # 追加
