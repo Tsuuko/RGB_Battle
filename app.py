@@ -113,7 +113,7 @@ def addDatabase(username,color,battle_point):
 def dbresetAndInitConfirm():
     return render_template('init.html',url="/!init_"+os.environ['INIT_KEY']) # 変更
 
-@app.route("/!init!_"+os.environ['INIT_KEY'])
+@app.route("/!init_"+os.environ['INIT_KEY'])
 def dbresetAndInit():
     Entry.query.delete()
     db.session.commit()
