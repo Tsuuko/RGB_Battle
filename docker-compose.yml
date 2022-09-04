@@ -1,0 +1,11 @@
+version: '3'
+services:
+  webapp:
+    build: .
+    # environment:
+    #   DATABASE_URL: '${DATABASE_URL}'
+    #   INIT_KEY: '${INIT_KEY}'
+    ports:
+      - "80:5000"
+    env_file:
+      - ./.env
